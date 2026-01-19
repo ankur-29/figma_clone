@@ -1,7 +1,14 @@
-export default function Page() {
+import Link from "next/link";
+
+export default function Home() {
   return (
-    <div className="h-[100vh] w-full flex justify-center items-center text-center">
-      <h1 className="text-2xl font-bold text-red-900">Welcome to DesignKit</h1>
-    </div>
+    <main className="h-screen flex items-center justify-center">
+      <Link
+        href="/editor"
+        className="px-6 py-3 bg-black text-white rounded"
+      >
+        Open DesignKit Editor
+      </Link>
+    </main>
   );
 }
