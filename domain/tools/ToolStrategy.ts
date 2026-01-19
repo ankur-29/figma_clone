@@ -1,8 +1,9 @@
 import { SelectTool } from "./SelectTool";
 import { RectTool } from "./RectTool";
-import { Tool } from "./Tool";
+import { CircleTool } from "./CircleTool";
 
-export const tools: Record<string, Tool> = {
+export const toolStrategy = {
   select: new SelectTool(),
   rectangle: new RectTool(),
+  circle: new CircleTool(),
 };

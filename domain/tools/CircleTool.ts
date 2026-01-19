@@ -1,10 +1,10 @@
 import * as fabric from "fabric";
 import { Tool } from "./Tool";
 
-export class RectTool implements Tool {
-  name = "rectangle";
+export class CircleTool implements Tool {
+  name = "circle";
 
-  private rect: fabric.Rect | null = null;
+  private circle: fabric.Circle | null = null;
   private startX = 0;
   private startY = 0;
 
@@ -20,31 +20,27 @@ export class RectTool implements Tool {
     this.startX = pointer.x;
     this.startY = pointer.y;
 
-    this.rect = new fabric.Rect({
+    this.circle = new fabric.Circle({
       left: this.startX,
       top: this.startY,
-      width: 1,
-      height: 1,
-      fill: "#3b82f6",
+      radius: 1,
+      fill: "#22c55e",
     });
 
-    canvas.add(this.rect);
+    canvas.add(this.circle);
   }
 
   onMouseMove(e: fabric.TEvent, canvas: fabric.Canvas) {
-    if (!this.rect) return;
+    if (!this.circle) return;
 
     const pointer = fabric.util.getPointer(e.e as MouseEvent);
+    const radius = Math.abs(pointer.x - this.startX);
 
-    this.rect.set({
-      width: Math.abs(pointer.x - this.startX),
-      height: Math.abs(pointer.y - this.startY),
-    });
-
+    this.circle.set({ radius });
     canvas.renderAll();
   }
 
   onMouseUp() {
-    this.rect = null;
+    this.circle = null;
   }
 }
