@@ -1,6 +1,7 @@
 "use client";
 import { useEditorStore } from "@/store/editorStore";
 import FabricCanvas from "@/components/canvas/FabricCanvas";
+import Toolbar from "@/ui/Toolbar";
 
 export default function EditorPage() {
     const selectedObject = useEditorStore((s) => s.selectedObject);
@@ -22,6 +23,7 @@ export default function EditorPage() {
             {/* Canvas Area */}
             <main className="flex-1 relative bg-gray-100">
                 <FabricCanvas />
+                <Toolbar />
             </main>
             
             {/* Properties */}
