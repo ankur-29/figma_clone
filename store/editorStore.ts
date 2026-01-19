@@ -10,6 +10,7 @@ interface EditorState {
   setCanvas: (canvas: fabric.Canvas) => void;
   setActiveTool: (tool: Tool | null) => void;
   setSelectedObject: (obj: fabric.Object | null) => void;
+  updateSelectedObject: (props: Partial<fabric.Object>) => void;
 }
 
 export const useEditorStore = create<EditorState>((set, get) => ({
@@ -34,4 +35,16 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   },
 
   setSelectedObject: (obj) => set({ selectedObject: obj }),
+  
+  updateSelectedObject: (props) =>
+  set((state) => {
+    if (!state.canvas || !state.selectedObject) return state;
+
+    state.selectedObject.set(props);
+    state.selectedObject.setCoords();
+    state.canvas.requestRenderAll();
+
+    return {};
+  }),
+
 }));
