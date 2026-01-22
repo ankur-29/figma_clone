@@ -3,6 +3,7 @@ import { useEditorStore } from "@/store/editorStore";
 import FabricCanvas from "@/components/canvas/FabricCanvas";
 import Toolbar from "@/ui/Toolbar";
 import PropertiesPanel from "@/components/panels/PropertiesPanel";
+import LayersPanel from "@/components/panels/LayerPanel";
 
 export default function EditorPage() {
     const selectedObject = useEditorStore((s) => s.selectedObject);
@@ -17,9 +18,7 @@ export default function EditorPage() {
         {/* Main Editor */}
         <div className="flex flex-1 overflow-hidden">
             {/* Layers */}
-            <aside className="w-60 border-r p-2">
-                Layers
-            </aside>
+            <LayersPanel />
             
             {/* Canvas Area */}
             <main className="flex-1 relative bg-gray-100">
